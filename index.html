@@ -449,6 +449,54 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
   </div>
 </section>
 
+<!-- FINANCEIRO -->
+<section class="stats-section" style="padding:100px 40px;background:#fff;">
+  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+    <div class="reveal">
+      <div class="section-label">Controle financeiro</div>
+      <h2 class="section-title" style="font-size:clamp(38px,5vw,62px);">Abre o painel.<br><span class="accent">Vê tudo.</span></h2>
+      <p class="section-subtitle">Sem extrato bancário. Sem planilha. Sem perguntar pro professor quanto ele recebeu. <strong>Tudo atualizado em tempo real, automaticamente.</strong></p>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:28px;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);"><span style="color:var(--green);font-weight:700;">✓</span> Quem pagou e quem está devendo</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);"><span style="color:var(--green);font-weight:700;">✓</span> Quanto entrou e quanto está pendente</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);"><span style="color:var(--green);font-weight:700;">✓</span> Repasse de professores calculado automaticamente</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);"><span style="color:var(--green);font-weight:700;">✓</span> Export CSV/Excel com filtros avançados</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);"><span style="color:var(--green);font-weight:700;">✓</span> Gympass, Totalpass e Wellhub separados</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div style="background:var(--ocean);border-radius:22px;padding:30px;position:relative;overflow:hidden;">
+        <div style="font-size:11px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:20px;display:flex;align-items:center;gap:8px;">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;"></span>
+          Atualizado em tempo real
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;">
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:8px;">Recebido este mês</div>
+            <div style="font-size:24px;font-weight:700;color:var(--green);" id="fin-recebido">R$ 0</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:4px;">47 atletas pagos</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;">
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:8px;">Pendente</div>
+            <div style="font-size:24px;font-weight:700;color:var(--gold);" id="fin-pendente">R$ 0</div>
+            <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:4px;">8 em aberto</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;">
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:8px;">Repasse professor</div>
+            <div style="font-size:24px;font-weight:700;color:var(--blue);" id="fin-repasse">R$ 0</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;">
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:8px;">Inadimplentes</div>
+            <div style="font-size:24px;font-weight:700;color:#f87171;">3 atletas</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- MODULES -->
 <section id="modulos" class="modules-section">
   <div class="modules-inner">
@@ -661,7 +709,30 @@ const dashObs = new IntersectionObserver(entries => {
 const dashEl = document.getElementById('dash-geradas');
 if(dashEl) dashObs.observe(document.getElementById('tl-2'));
 
-/* ── Split bars animate on scroll ── */
+/* ── Finance counter animation ── */
+function animateFinance(id, target, duration){
+  const el = document.getElementById(id);
+  if(!el) return;
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start = Math.min(start + step, target);
+    el.textContent = 'R$ ' + Math.round(start).toLocaleString('pt-BR') + ',00';
+    if(start >= target) clearInterval(timer);
+  }, 16);
+}
+const finObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      animateFinance('fin-recebido', 12400, 1200);
+      animateFinance('fin-pendente', 2800, 1000);
+      animateFinance('fin-repasse', 4588, 1400);
+      finObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.4});
+const finEl = document.getElementById('fin-recebido');
+if(finEl) finObs.observe(finEl.closest('section'));
 const splitObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){
