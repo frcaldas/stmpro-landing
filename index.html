@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STM Pro — Gestão completa para o seu CT ou Personal Trainer</title>
+<meta name="description" content="Do cadastro à cobrança confirmada no WhatsApp. Gestão automática para CTs de beach sports e personal trainers.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#F5EDD6;--ocean:#0a1628;--gold:#f5a623;--green:#1D9E75;--blue:#378ADD;
+  --text:#1a1a2e;--muted:#6b7280;--wa:#25d366;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--sand);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 40px;background:rgba(10,22,40,0.97);backdrop-filter:blur(12px);}
+.nav-logo{font-size:20px;font-weight:700;color:#fff;letter-spacing:-0.02em;}
+.nav-logo span{color:var(--gold);}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-size:13px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.15s;cursor:pointer;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{background:var(--gold);color:var(--ocean);border:none;border-radius:8px;padding:10px 24px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:transform 0.15s;}
+.nav-cta:hover{transform:translateY(-1px);}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--ocean);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 100%,rgba(29,158,117,0.15) 0%,transparent 70%),radial-gradient(ellipse 60% 40% at 80% 20%,rgba(245,166,35,0.08) 0%,transparent 60%);}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.3);padding:7px 18px;border-radius:20px;margin-bottom:32px;position:relative;animation:fadeUp 0.8s ease both;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,10vw,118px);line-height:0.92;letter-spacing:0.02em;margin-bottom:8px;position:relative;animation:fadeUp 0.8s 0.1s ease both;}
+.hero-title .lw{color:#fff;display:block;}
+.hero-title .lg{color:var(--gold);display:block;}
+.hero-title .lo{-webkit-text-stroke:2px rgba(255,255,255,0.25);color:transparent;display:block;}
+.hero-title .lgr{color:var(--green);display:block;}
+.hero-sub{font-size:clamp(15px,1.8vw,19px);color:rgba(255,255,255,0.5);max-width:540px;line-height:1.7;margin:28px auto 40px;font-weight:300;position:relative;animation:fadeUp 0.8s 0.2s ease both;}
+.hero-sub em{color:rgba(255,255,255,0.85);font-style:normal;font-weight:500;}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;animation:fadeUp 0.8s 0.3s ease both;}
+.btn-primary{background:var(--gold);color:var(--ocean);border:none;border-radius:10px;padding:16px 36px;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:transform 0.15s,box-shadow 0.15s;box-shadow:0 4px 24px rgba(245,166,35,0.4);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(245,166,35,0.5);}
+.btn-ghost{background:transparent;color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.15);border-radius:10px;padding:16px 36px;font-size:16px;font-weight:400;cursor:pointer;font-family:inherit;transition:all 0.15s;}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.4);color:#fff;}
+.hero-sports{display:flex;gap:12px;justify-content:center;margin-top:56px;position:relative;animation:fadeUp 0.8s 0.4s ease both;flex-wrap:wrap;}
+.sport-pill{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:8px 16px;font-size:12px;color:rgba(255,255,255,0.65);letter-spacing:0.1em;text-transform:uppercase;font-weight:500;}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,0.25);font-size:10px;letter-spacing:0.15em;text-transform:uppercase;animation:fadeUp 1s 0.6s ease both;}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,rgba(255,255,255,0.25),transparent);animation:scrollPulse 2s ease infinite;}
+
+/* PROBLEM */
+.section-label{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,62px);line-height:1;color:var(--ocean);margin-bottom:6px;}
+.section-title .accent{color:var(--gold);}
+.problem-section{background:var(--sand);padding:100px 40px;}
+.problem-inner{max-width:1100px;margin:0 auto;}
+.section-subtitle{font-size:clamp(15px,1.6vw,18px);color:var(--muted);max-width:540px;line-height:1.7;font-weight:300;margin-top:16px;}
+.section-subtitle strong{color:var(--text);font-weight:500;}
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:48px;}
+.problem-card{background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:16px;padding:26px;position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;}
+.problem-card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.08);}
+.problem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.problem-card:nth-child(1)::before{background:var(--gold);}
+.problem-card:nth-child(2)::before{background:var(--blue);}
+.problem-card:nth-child(3)::before{background:var(--green);}
+.problem-card:nth-child(4)::before{background:#e05c30;}
+.problem-icon{font-size:26px;margin-bottom:12px;display:block;}
+.problem-title{font-size:15px;font-weight:600;color:var(--ocean);margin-bottom:7px;}
+.problem-desc{font-size:13px;color:var(--muted);line-height:1.65;}
+
+/* =============================================
+   FLOW SECTION — ANIMAÇÃO CINEMATOGRÁFICA
+   ============================================= */
+.flow-section{background:var(--ocean);padding:100px 40px;overflow:hidden;}
+.flow-inner{max-width:960px;margin:0 auto;text-align:center;}
+.flow-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,60px);line-height:1;margin-bottom:8px;}
+.flow-title .w{color:#fff;}.flow-title .g{color:var(--gold);}.flow-title .gr{color:var(--green);}
+.flow-sub{font-size:16px;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.7;max-width:520px;margin:16px auto 64px;}
+.flow-sub em{color:rgba(255,255,255,0.8);font-style:normal;font-weight:500;}
+
+/* Timeline animada */
+.timeline{position:relative;max-width:700px;margin:0 auto;text-align:left;}
+.timeline::before{content:'';position:absolute;left:27px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,rgba(245,166,35,0.6),rgba(29,158,117,0.6),rgba(55,138,221,0.6),rgba(37,211,102,0.6));opacity:0.25;}
+
+.tl-item{display:flex;gap:20px;align-items:flex-start;margin-bottom:0;opacity:0;transform:translateX(-24px);transition:opacity 0.55s ease,transform 0.55s ease;}
+.tl-item.tl-visible{opacity:1;transform:translateX(0);}
+
+.tl-node{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;position:relative;z-index:1;transition:transform 0.3s;}
+.tl-item.tl-visible .tl-node{animation:nodeAppear 0.5s ease both;}
+.tl-node:hover{transform:scale(1.08);}
+
+/* Node colors */
+.n-once{background:rgba(245,166,35,0.12);border:1.5px solid rgba(245,166,35,0.5);}
+.n-auto{background:rgba(29,158,117,0.12);border:1.5px solid rgba(29,158,117,0.5);}
+.n-smart{background:rgba(55,138,221,0.12);border:1.5px solid rgba(55,138,221,0.5);}
+.n-wa{background:rgba(37,211,102,0.12);border:1.5px solid rgba(37,211,102,0.5);}
+.n-done{background:rgba(245,166,35,0.12);border:1.5px solid rgba(245,166,35,0.5);}
+
+/* Pulsing ring on auto nodes */
+@keyframes ringPulse{0%{transform:scale(1);opacity:0.6;}100%{transform:scale(1.7);opacity:0;}}
+.tl-item.tl-visible .n-auto::after,
+.tl-item.tl-visible .n-wa::after{
+  content:'';position:absolute;inset:-6px;border-radius:50%;
+  border:1.5px solid rgba(29,158,117,0.4);
+  animation:ringPulse 2.2s ease-out infinite;
+}
+.tl-item.tl-visible .n-wa::after{border-color:rgba(37,211,102,0.4);}
+
+.tl-body{padding:0 0 40px;flex:1;}
+.tl-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;padding:3px 11px;border-radius:20px;margin-bottom:10px;}
+.tag-once{background:rgba(245,166,35,0.15);color:var(--gold);}
+.tag-auto{background:rgba(29,158,117,0.15);color:var(--green);}
+.tag-smart{background:rgba(55,138,221,0.15);color:var(--blue);}
+.tag-wa{background:rgba(37,211,102,0.15);color:var(--wa);}
+.tag-done{background:rgba(245,166,35,0.15);color:var(--gold);}
+
+.tl-name{font-size:18px;font-weight:600;color:#fff;margin-bottom:6px;}
+.tl-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;}
+.tl-desc em{color:rgba(255,255,255,0.8);font-style:normal;}
+
+/* WhatsApp bubble preview */
+.wa-bubble-wrap{margin-top:14px;display:flex;flex-direction:column;gap:8px;}
+.wa-bubble{background:rgba(37,211,102,0.07);border:1px solid rgba(37,211,102,0.18);border-radius:12px 12px 12px 2px;padding:12px 14px;font-size:12px;color:rgba(255,255,255,0.65);line-height:1.55;position:relative;overflow:hidden;}
+.wa-bubble::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--wa);border-radius:3px 0 0 3px;}
+.wa-day{font-size:10px;font-weight:700;color:var(--wa);margin-bottom:5px;text-transform:uppercase;letter-spacing:0.1em;}
+.wa-text em{color:rgba(255,255,255,0.85);font-style:normal;}
+
+/* Smart cancel box */
+.smart-cancel{margin-top:12px;background:rgba(55,138,221,0.07);border:1px solid rgba(55,138,221,0.2);border-radius:10px;padding:12px 16px;display:flex;gap:10px;align-items:flex-start;}
+.smart-cancel-icon{font-size:18px;flex-shrink:0;}
+.smart-cancel-text{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.55;}
+.smart-cancel-text strong{color:rgba(255,255,255,0.85);}
+
+/* Payment methods */
+.pay-pills{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+.pay-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:5px 12px;font-size:12px;color:rgba(255,255,255,0.6);}
+.pay-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+
+/* Dashboard preview mini */
+.mini-dash{margin-top:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 16px;}
+.mini-dash-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:12px;}
+.mini-dash-row:last-child{border:none;}
+.mini-dash-label{color:rgba(255,255,255,0.4);}
+.mini-dash-val{font-weight:600;}
+
+/* Flow CTA banner */
+.flow-banner{margin-top:56px;background:rgba(29,158,117,0.08);border:1px solid rgba(29,158,117,0.2);border-radius:16px;padding:26px 30px;text-align:left;display:flex;gap:18px;align-items:flex-start;}
+.flow-banner-icon{font-size:26px;flex-shrink:0;margin-top:2px;}
+.flow-banner-text{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.75;}
+.flow-banner-text strong{color:#fff;}
+.flow-banner-text em{color:var(--green);font-style:normal;}
+
+/* MODULES */
+.modules-section{background:var(--sand);padding:100px 40px;}
+.modules-inner{max-width:1160px;margin:0 auto;}
+.modules-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,62px);line-height:1;margin-bottom:6px;color:var(--ocean);}
+.modules-title .g{color:var(--gold);}
+.modules-sub{font-size:16px;color:var(--muted);font-weight:300;margin-top:14px;max-width:480px;line-height:1.6;}
+.modules-sub em{color:var(--text);font-style:normal;font-weight:500;}
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:52px;}
+.module-card{background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:20px;padding:28px;transition:all 0.2s;position:relative;overflow:hidden;}
+.module-card:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,0.08);}
+.module-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.mc-1::before{background:var(--green);}.mc-2::before{background:var(--gold);}.mc-3::before{background:var(--wa);}.mc-4::before{background:var(--blue);}
+.module-num{font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;}
+.module-icon-wrap{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px;}
+.module-name{font-size:18px;font-weight:600;color:var(--ocean);margin-bottom:7px;}
+.module-desc{font-size:13px;color:var(--muted);line-height:1.65;}
+.module-features{display:flex;flex-direction:column;gap:7px;margin-top:16px;}
+.module-feature{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--muted);line-height:1.5;}
+.module-feature .chk{color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px;}
+.module-feature .hl{color:var(--ocean);font-weight:500;}
+.module-badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px;margin-left:6px;vertical-align:middle;}
+.badge-new{background:#dcfce7;color:#166534;}
+.badge-auto{background:#fef9c3;color:#713f12;}
+
+/* STATS */
+.stats-section{padding:72px 40px;background:#fff;}
+.stats-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:64px;color:var(--ocean);line-height:1;}
+.stat-num .acc{color:var(--gold);}
+.stat-label{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.5;}
+.stat-label strong{color:var(--text);display:block;font-weight:500;font-size:14px;}
+
+/* SPLIT */
+.split-section{padding:100px 40px;background:var(--sand);}
+.split-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.split-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,4vw,56px);line-height:1;color:var(--ocean);}
+.split-title .a{color:var(--gold);}
+.split-sub{font-size:15px;color:var(--muted);line-height:1.7;margin-top:16px;font-weight:300;}
+.split-options{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
+.split-option{display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid rgba(0,0,0,0.06);border-radius:12px;padding:14px 16px;}
+.split-option-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.split-option-title{font-size:14px;font-weight:600;color:var(--ocean);margin-bottom:3px;}
+.split-option-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+.split-option-desc em{color:var(--green);font-style:normal;font-weight:500;}
+.split-visual{background:var(--ocean);border-radius:22px;padding:30px;position:relative;overflow:hidden;}
+.split-visual::before{content:'';position:absolute;bottom:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:rgba(29,158,117,0.08);}
+.split-heading{font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:22px;}
+.split-bar-wrap{margin-bottom:14px;}
+.split-bar-label{display:flex;justify-content:space-between;margin-bottom:5px;}
+.split-bar-name{font-size:13px;color:rgba(255,255,255,0.7);font-weight:500;}
+.split-bar-val{font-size:13px;font-weight:600;}
+.split-bar-track{height:10px;background:rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;}
+.split-bar-fill{height:100%;border-radius:20px;transition:width 1.2s ease;}
+.split-total{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,0.3);}
+.split-total strong{color:#fff;font-weight:600;font-size:14px;}
+.split-note{margin-top:10px;font-size:11px;color:rgba(255,255,255,0.2);font-style:italic;}
+
+/* ROI */
+.roi-section{padding:100px 40px;background:#fff;text-align:center;}
+.roi-container{max-width:680px;margin:40px auto 0;padding:40px;background:var(--sand);border-radius:24px;box-shadow:0 15px 35px rgba(10,22,40,0.06);}
+.roi-section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,4vw,54px);color:var(--ocean);letter-spacing:1px;line-height:1;}
+.roi-section-title em{color:var(--green);font-style:normal;}
+.roi-slider-box{margin:28px 0 0;}
+.roi-slider-box label{display:block;font-weight:700;margin-bottom:14px;color:var(--ocean);font-size:17px;}
+.roi-slider{width:100%;-webkit-appearance:none;height:8px;border-radius:5px;background:rgba(10,22,40,0.1);outline:none;}
+.roi-slider::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--green);cursor:pointer;transition:0.2s;box-shadow:0 4px 10px rgba(0,0,0,0.15);}
+.roi-slider::-webkit-slider-thumb:hover{transform:scale(1.15);}
+.roi-results{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px;padding-top:28px;border-top:2px dashed rgba(10,22,40,0.1);}
+.roi-card{background:var(--ocean);color:#fff;padding:24px;border-radius:14px;text-align:left;}
+.roi-card span{display:block;font-size:13px;color:rgba(245,237,214,0.7);margin-bottom:8px;}
+.roi-card strong{font-size:26px;color:#fff;font-weight:700;}
+.roi-card.highlight strong{color:var(--gold);}
+
+/* FAQ */
+.faq-section{padding:100px 40px;background:var(--ocean);text-align:center;}
+.faq-section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,4vw,54px);color:#fff;letter-spacing:1px;margin-bottom:48px;line-height:1;}
+.faq-section-title em{color:var(--green);font-style:normal;}
+.faq-container{max-width:760px;margin:0 auto;text-align:left;}
+.faq-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);margin-bottom:12px;border-radius:14px;overflow:hidden;transition:0.25s;}
+.faq-item:hover{background:rgba(255,255,255,0.04);}
+.faq-question{padding:22px 24px;font-weight:600;color:#fff;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;font-size:16px;}
+.faq-question::after{content:'+';font-size:22px;color:var(--green);font-weight:400;transition:0.25s;flex-shrink:0;}
+.faq-item.active{background:rgba(255,255,255,0.05);border-color:rgba(29,158,117,0.3);}
+.faq-item.active .faq-question::after{content:'−';color:var(--gold);}
+.faq-answer{max-height:0;overflow:hidden;padding:0 24px;color:rgba(245,237,214,0.7);line-height:1.65;transition:all 0.3s ease;font-size:14px;}
+.faq-item.active .faq-answer{max-height:220px;padding:0 24px 22px;}
+
+/* CTA */
+.cta-section{background:var(--ocean);padding:100px 40px;text-align:center;position:relative;overflow:hidden;}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(245,166,35,0.08) 0%,transparent 70%);}
+.cta-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(46px,6vw,82px);line-height:1;margin-bottom:18px;position:relative;}
+.cta-title .w{color:#fff;}.cta-title .g{color:var(--gold);}.cta-title .gr{color:var(--green);}
+.cta-sub{font-size:17px;color:rgba(255,255,255,0.45);max-width:480px;margin:0 auto 40px;line-height:1.7;font-weight:300;position:relative;}
+.cta-sub em{color:rgba(255,255,255,0.85);font-style:normal;font-weight:500;}
+.cta-note{margin-top:18px;font-size:12px;color:rgba(255,255,255,0.25);position:relative;letter-spacing:0.04em;}
+
+/* FOOTER */
+footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-logo{font-size:17px;font-weight:700;color:#fff;}
+.footer-logo span{color:var(--gold);}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+@keyframes scrollPulse{0%,100%{opacity:0.25;}50%{opacity:0.7;}}
+@keyframes nodeAppear{from{transform:scale(0.5);opacity:0;}to{transform:scale(1);opacity:1;}}
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:12px 20px;}
+  .nav-links{display:none;}
+  .hero,.problem-section,.flow-section,.modules-section,.split-section,.cta-section,.roi-section,.faq-section{padding:70px 20px;}
+  .split-inner{grid-template-columns:1fr;gap:40px;}
+  .stats-inner{grid-template-columns:1fr;gap:24px;}
+  .roi-results{grid-template-columns:1fr;}
+  footer{flex-direction:column;text-align:center;}
+  .tl-name{font-size:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">STM<span>Pro</span></div>
+  <div class="nav-links">
+    <a onclick="document.getElementById('flow').scrollIntoView({behavior:'smooth'})">Como funciona</a>
+    <a onclick="document.getElementById('modulos').scrollIntoView({behavior:'smooth'})">Módulos</a>
+    <a onclick="document.getElementById('roi').scrollIntoView({behavior:'smooth'})">Simulador</a>
+    <a onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">FAQ</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Quero testar →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">🏖️ Futvolei · 🎾 Beach Tennis · 🏋️ Funcional · 🧍 Personal</div>
+  <h1 class="hero-title">
+    <span class="lw">GESTÃO</span>
+    <span class="lg">AUTOMÁTICA</span>
+    <span class="lo">PARA O SEU</span>
+    <span class="lgr">CT</span>
+  </h1>
+  <p class="hero-sub">Do cadastro ao <em>pagamento confirmado no WhatsApp</em> — você cadastra o atleta uma vez. O STM Pro cuida de tudo no resto.</p>
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Quero uma demonstração</button>
+    <button class="btn-ghost" onclick="document.getElementById('flow').scrollIntoView({behavior:'smooth'})">Ver como funciona</button>
+  </div>
+  <div class="hero-sports">
+    <div class="sport-pill">⚡ Mensalidades automáticas</div>
+    <div class="sport-pill">💬 WhatsApp inteligente</div>
+    <div class="sport-pill">✅ Confirmação automática</div>
+    <div class="sport-pill">📊 Financeiro em tempo real</div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>scroll</div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem-section">
+  <div class="problem-inner">
+    <div class="reveal">
+      <div class="section-label">O problema</div>
+      <h2 class="section-title">Você ama <span class="accent">ensinar.</span><br>Odeia administrar.</h2>
+      <p class="section-subtitle">Todo mês a mesma história: cobranças no braço, confirmações manuais, planilha desatualizada. Isso rouba <strong>tempo que deveria estar na quadra.</strong></p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal"><span class="problem-icon">😤</span><div class="problem-title">Cobranças manuais todo mês</div><div class="problem-desc">Horas enviando mensagem por mensagem. <strong style="color:var(--text)">Constrangedor e ineficiente.</strong></div></div>
+      <div class="problem-card reveal"><span class="problem-icon">🔍</span><div class="problem-title">Confirmar pagamento é um caos</div><div class="problem-desc">Conferir extrato, print de Pix, marcar na planilha. <strong style="color:var(--text)">Tempo jogado fora.</strong></div></div>
+      <div class="problem-card reveal"><span class="problem-icon">💸</span><div class="problem-title">Sem visibilidade financeira</div><div class="problem-desc">Você não sabe <strong style="color:var(--text)">quanto vai entrar no mês</strong> nem quem está devendo.</div></div>
+      <div class="problem-card reveal"><span class="problem-icon">👨‍👩‍👧</span><div class="problem-title">Famílias e múltiplos atletas</div><div class="problem-desc">Pai, mãe e dois filhos no CT — <strong style="color:var(--text)">quatro cobranças separadas.</strong> Um caos.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW — ANIMAÇÃO CINEMATOGRÁFICA -->
+<section id="flow" class="flow-section">
+  <div class="flow-inner">
+    <div class="reveal">
+      <div class="section-label" style="color:var(--gold)">Como funciona</div>
+      <h2 class="flow-title"><span class="w">VOCÊ CADASTRA.</span><br><span class="g">O STM PRO</span><br><span class="gr">FAZ O RESTO.</span></h2>
+      <p class="flow-sub">Do vencimento ao <em>pagamento confirmado via WhatsApp</em> — tudo acontece sozinho, sem você precisar tocar em nada.</p>
+    </div>
+
+    <div class="timeline reveal">
+
+      <!-- STEP 1 -->
+      <div class="tl-item" id="tl-1">
+        <div class="tl-node n-once">👤</div>
+        <div class="tl-body">
+          <span class="tl-tag tag-once">Você faz uma vez</span>
+          <div class="tl-name">Cadastra o atleta</div>
+          <div class="tl-desc">Nome, modalidade, plano, vencimento e WhatsApp. <em>Feito — nunca mais precisa repetir.</em></div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="tl-item" id="tl-2">
+        <div class="tl-node n-auto">⚡</div>
+        <div class="tl-body">
+          <span class="tl-tag tag-auto">Automático — dia 1 às 6h</span>
+          <div class="tl-name">Mensalidades geradas automaticamente</div>
+          <div class="tl-desc">Todo dia 1º o sistema cria a cobrança de cada atleta ativo. <em>Você não faz nada.</em></div>
+          <div class="mini-dash">
+            <div class="mini-dash-row"><span class="mini-dash-label">🟢 Mensalidades geradas</span><span class="mini-dash-val" style="color:var(--green)" id="dash-geradas">0</span></div>
+            <div class="mini-dash-row"><span class="mini-dash-label">⏳ Aguardando pagamento</span><span class="mini-dash-val" style="color:var(--gold)">R$ 0</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="tl-item" id="tl-3">
+        <div class="tl-node n-wa">💬</div>
+        <div class="tl-body">
+          <span class="tl-tag tag-wa">WhatsApp automático</span>
+          <div class="tl-name">Avisos e lembretes inteligentes</div>
+          <div class="tl-desc">O atleta recebe avisos pontuais — <em>cada um com o link do seu método de pagamento.</em></div>
+          <div class="wa-bubble-wrap">
+            <div class="wa-bubble">
+              <div class="wa-day">📅 Na geração</div>
+              <em>"Oi João! 🏖️ Sua mensalidade de julho (R$ 350,00) foi gerada. Vencimento: 10/07. Pague aqui: [link Pix]"</em>
+            </div>
+            <div class="wa-bubble">
+              <div class="wa-day">⏰ 3 dias antes</div>
+              <em>"Oi João, lembrete: sua mensalidade vence em 3 dias. Link de pagamento: [link Pix] 💪"</em>
+            </div>
+            <div class="wa-bubble">
+              <div class="wa-day">📆 No vencimento</div>
+              <em>"Oi João, hoje é o último dia. Clique aqui para pagar: [link Pix]"</em>
+            </div>
+          </div>
+          <div class="pay-pills" style="margin-top:14px;">
+            <div class="pay-pill"><div class="pay-dot" style="background:var(--gold)"></div>Pix</div>
+            <div class="pay-pill"><div class="pay-dot" style="background:var(--blue)"></div>Boleto</div>
+            <div class="pay-pill"><div class="pay-dot" style="background:var(--green)"></div>Cartão</div>
+            <span style="font-size:11px;color:rgba(255,255,255,0.3);align-self:center;margin-left:4px;">cada atleta recebe o link do seu método</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="tl-item" id="tl-4">
+        <div class="tl-node n-smart">🧠</div>
+        <div class="tl-body">
+          <span class="tl-tag tag-smart">Inteligente</span>
+          <div class="tl-name">Pagou? Os próximos lembretes são cancelados</div>
+          <div class="tl-desc">Antes de cada disparo o sistema verifica. <em>Quem já pagou não recebe mais nada.</em></div>
+          <div class="smart-cancel">
+            <div class="smart-cancel-icon">✋</div>
+            <div class="smart-cancel-text"><strong>Sem spam.</strong> Se o atleta pagou no primeiro aviso, os lembretes seguintes são cancelados automaticamente. O sistema só cobra quem realmente ainda não pagou.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5 -->
+      <div class="tl-item" id="tl-5">
+        <div class="tl-node n-auto">✅</div>
+        <div class="tl-body">
+          <span class="tl-tag tag-auto">Automático</span>
+          <div class="tl-name">Pagamento validado e status atualizado</div>
+          <div class="tl-desc"><em>Sem conferir extrato. Sem print de Pix. Sem planilha.</em></div>
+          <div class="wa-bubble-wrap" style="margin-top:12px;">
+            <div class="wa-bubble" style="border-color:rgba(29,158,117,0.3);background:rgba(29,158,117,0.06);">
+              <div class="wa-day" style="color:var(--green)">✅ Confirmação automática</div>
+              <em>"Pagamento confirmado! Obrigado, João. Até o treino! 🏖️"</em>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 6 -->
+      <div class="tl-item" id="tl-6">
+        <div class="tl-node n-done">📊</div>
+        <div class="tl-body">
+          <span class="tl-tag tag-done">Resultado</span>
+          <div class="tl-name">Você abre o painel e vê tudo pronto</div>
+          <div class="tl-desc">Quem pagou, quem está pendente, quanto entrou, repasse de professores. <em>Tudo em tempo real.</em></div>
+          <div class="mini-dash" style="margin-top:14px;">
+            <div class="mini-dash-row"><span class="mini-dash-label">💰 Recebido no mês</span><span class="mini-dash-val" style="color:var(--green)">R$ 12.400,00</span></div>
+            <div class="mini-dash-row"><span class="mini-dash-label">⚠️ Inadimplentes</span><span class="mini-dash-val" style="color:#f87171">3 atletas</span></div>
+            <div class="mini-dash-row"><span class="mini-dash-label">👨‍🏫 Repasse professores</span><span class="mini-dash-val" style="color:var(--blue)">R$ 4.588,00</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end timeline -->
+
+    <div class="flow-banner reveal">
+      <div class="flow-banner-icon">🎯</div>
+      <div class="flow-banner-text"><strong>O único trabalho do CT é cadastrar o atleta.</strong> Todo o fluxo de cobrança, confirmação de pagamento, notificações WhatsApp e atualização de status acontece automaticamente — e o sistema é inteligente o suficiente para <em>parar de cobrar quem já pagou.</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section id="modulos" class="modules-section">
+  <div class="modules-inner">
+    <div class="reveal">
+      <div class="section-label">A solução completa</div>
+      <h2 class="modules-title">TUDO EM UM <span class="g">LUGAR SÓ</span></h2>
+      <p class="modules-sub">Pare de usar <em>5 ferramentas diferentes</em> para o que um único sistema resolve com automação total.</p>
+    </div>
+    <div class="modules-grid">
+      <!-- Módulo 1 -->
+      <div class="module-card mc-1 reveal">
+        <div class="module-num">Módulo 01</div>
+        <div class="module-icon-wrap" style="background:#E1F5EE">🏃</div>
+        <div class="module-name">Cadastro de atletas</div>
+        <div class="module-desc">Ficha completa de cada aluno — modalidade, nível, plano e histórico de pagamentos.</div>
+        <div class="module-features">
+          <div class="module-feature"><span class="chk">✓</span><span>Futvolei, <span class="hl">Beach Tennis</span> e Funcional</span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Mensalista, avulso ou <span class="hl">corporativo</span></span></div>
+          <div class="module-feature"><span class="chk">✓</span><span><span class="hl">Plano familiar</span> com cobrança unificada</span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Gympass, Totalpass e Wellhub <span class="badge-new module-badge">Novo</span></span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Importação em massa via CSV</span></div>
+        </div>
+      </div>
+      <!-- Módulo 2 -->
+      <div class="module-card mc-2 reveal">
+        <div class="module-num">Módulo 02</div>
+        <div class="module-icon-wrap" style="background:#FAEEDA">💰</div>
+        <div class="module-name">Controle financeiro</div>
+        <div class="module-desc">Dashboard completo. Cobranças geradas e validadas automaticamente — nenhum acesso ao extrato.</div>
+        <div class="module-features">
+          <div class="module-feature"><span class="chk">✓</span><span>Geração <span class="hl">automática</span> todo dia 1º às 6h <span class="badge-auto module-badge">Auto</span></span></div>
+          <div class="module-feature"><span class="chk">✓</span><span><span class="hl">Validação de pagamento</span> via webhook</span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Painel de inadimplência em tempo real</span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Breakdown bruto/líquido e taxas gateway</span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Export CSV/Excel com filtros avançados</span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Repasse automático de professores</span></div>
+        </div>
+      </div>
+      <!-- Módulo 3 -->
+      <div class="module-card mc-3 reveal">
+        <div class="module-num">Módulo 03</div>
+        <div class="module-icon-wrap" style="background:#dcfce7">💬</div>
+        <div class="module-name">WhatsApp inteligente</div>
+        <div class="module-desc">Cobranças personalizadas por método de pagamento. Para automaticamente quando o atleta paga.</div>
+        <div class="module-features">
+          <div class="module-feature"><span class="chk">✓</span><span>Boas-vindas automático para admin e atleta</span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Lembretes: geração, <span class="hl">3 dias antes</span>, vencimento e 5 dias após</span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Pix, boleto ou cartão — <span class="hl">cada um recebe o seu</span></span></div>
+          <div class="module-feature"><span class="chk">✓</span><span><span class="hl">Cancela notificações</span> ao confirmar pagamento <span class="badge-auto module-badge">Auto</span></span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Confirmação de pagamento em tempo real</span></div>
+        </div>
+      </div>
+      <!-- Módulo 4 -->
+      <div class="module-card mc-4 reveal">
+        <div class="module-num">Módulo 04</div>
+        <div class="module-icon-wrap" style="background:#E6F1FB">📊</div>
+        <div class="module-name">Painel super admin</div>
+        <div class="module-desc">Visão consolidada de todos os CTs da plataforma — para quem gerencia mais de uma unidade.</div>
+        <div class="module-features">
+          <div class="module-feature"><span class="chk">✓</span><span>Dashboard financeiro consolidado</span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Invite de admins com <span class="hl">criação de senha</span> segura</span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Gestão multi-CT em uma tela só</span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Export financeiro por CT ou consolidado</span></div>
+          <div class="module-feature"><span class="chk">✓</span><span>Menu responsivo <span class="hl">mobile-first</span> <span class="badge-new module-badge">Novo</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stats-inner reveal">
+    <div><div class="stat-num">5<span class="acc">h</span></div><div class="stat-label"><strong>Economizadas por mês</strong>em cobranças e confirmações manuais</div></div>
+    <div><div class="stat-num">3<span class="acc">x</span></div><div class="stat-label"><strong>Menos inadimplência</strong>com lembretes automáticos e inteligentes</div></div>
+    <div><div class="stat-num">0</div><div class="stat-label"><strong>Extratos para conferir</strong>validação automática de cada pagamento</div></div>
+  </div>
+</section>
+
+<!-- SPLIT -->
+<section class="split-section">
+  <div class="split-inner">
+    <div class="reveal">
+      <div class="section-label">Repasse de professores</div>
+      <h2 class="split-title">Do jeito que <span class="a">funciona pra você</span></h2>
+      <p class="split-sub">Cada CT tem um modelo diferente. O STM Pro se adapta — não o contrário.</p>
+      <div class="split-options">
+        <div class="split-option"><div class="split-option-icon">💼</div><div><div class="split-option-title">Salário fixo ou combinado</div><div class="split-option-desc">Pague seu professor como sempre fez. O sistema registra e <em>você repassa como preferir.</em></div></div></div>
+        <div class="split-option"><div class="split-option-icon">⚡</div><div><div class="split-option-title">Split automático (opcional)</div><div class="split-option-desc">Configure o percentual e o professor <em>recebe direto na conta</em> — sem você fazer nada.</div></div></div>
+        <div class="split-option"><div class="split-option-icon">🎓</div><div><div class="split-option-title">Percentuais por nível</div><div class="split-option-desc">Professor sênior e iniciante com <em>percentuais diferentes.</em> Cada um recebe o combinado.</div></div></div>
+      </div>
+    </div>
+    <div class="split-visual reveal">
+      <div class="split-heading">Exemplo de split — mensalidade R$ 350,00</div>
+      <div class="split-bar-wrap"><div class="split-bar-label"><span class="split-bar-name">CT</span><span class="split-bar-val" style="color:var(--gold)">R$ 210,00 · 60%</span></div><div class="split-bar-track"><div class="split-bar-fill" id="bar-ct" style="width:0;background:var(--gold)"></div></div></div>
+      <div class="split-bar-wrap"><div class="split-bar-label"><span class="split-bar-name">Professor</span><span class="split-bar-val" style="color:var(--green)">R$ 129,50 · 37%</span></div><div class="split-bar-track"><div class="split-bar-fill" id="bar-prof" style="width:0;background:var(--green)"></div></div></div>
+      <div class="split-bar-wrap"><div class="split-bar-label"><span class="split-bar-name">STM Pro</span><span class="split-bar-val" style="color:var(--blue)">R$ 10,50 · 3%</span></div><div class="split-bar-track"><div class="split-bar-fill" id="bar-stm" style="width:0;background:var(--blue)"></div></div></div>
+      <div class="split-total"><span>Total distribuído automaticamente</span><strong>R$ 350,00</strong></div>
+      <div class="split-note">* Split automático com gateway de pagamento configurado</div>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section id="roi" class="roi-section">
+  <div class="reveal">
+    <h2 class="roi-section-title">Quanto você vai <em>faturar a mais</em>?</h2>
+    <p style="color:var(--muted);max-width:600px;margin:14px auto 0;font-size:16px;line-height:1.6;">Simule com base no número de atletas ativos do seu CT e veja o impacto financeiro direto.</p>
+    <div class="roi-container">
+      <div class="roi-slider-box">
+        <label>Atletas ativos: <span id="roi-val" style="color:var(--green);font-size:24px;font-weight:700;">150</span></label>
+        <input type="range" min="10" max="800" value="150" class="roi-slider" id="roi-slider" oninput="calcROI(this.value)">
+      </div>
+      <div class="roi-results">
+        <div class="roi-card"><span>Tempo economizado / mês</span><strong id="roi-tempo">~6 horas</strong></div>
+        <div class="roi-card highlight"><span>Receita recuperada / mês</span><strong id="roi-receita">R$ 1.440,00</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq-section">
+  <div class="reveal">
+    <h2 class="faq-section-title">Perguntas <em>frequentes</em></h2>
+    <div class="faq-container">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Como funciona a geração automática de mensalidades?</div>
+        <div class="faq-answer">Todo dia 1º o sistema percorre todos os atletas ativos e gera uma cobrança para cada um. Você não precisa fazer nada — nem clicar num botão. As mensalidades já saem com o vencimento, valor e método de pagamento de cada atleta.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">O atleta pode pagar por Pix, boleto e cartão?</div>
+        <div class="faq-answer">Sim. Você configura a preferência de cada atleta no cadastro. Cada lembrete de WhatsApp já chega com o link correto para o método dele — sem confusão e sem o atleta precisar pedir.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Como funciona a confirmação automática de pagamento?</div>
+        <div class="faq-answer">Quando o atleta paga, o sistema identifica o pagamento em tempo real e atualiza automaticamente. O STM Pro marca a cobrança como paga, cancela todos os lembretes pendentes daquele atleta e dispara uma mensagem de confirmação no WhatsApp dele — tudo sem você fazer nada.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">O sistema funciona para personal trainers autônomos também?</div>
+        <div class="faq-answer">Sim! O STM Pro foi construído tanto para CTs com múltiplos professores quanto para personals autônomos que atendem alunos avulsos e mensalistas. Cada conta tem seu próprio painel isolado, financeiro separado e configurações independentes.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Consigo importar meus alunos de uma planilha?</div>
+        <div class="faq-answer">Sim. O sistema tem importação em massa via CSV — você exporta sua planilha atual, formata em dois minutos e importa tudo de uma vez. Nossa equipe auxilia no processo sem custo adicional.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Como funciona o Gympass, Totalpass e Wellhub?</div>
+        <div class="faq-answer">Para atletas com benefício corporativo, o sistema registra o convênio no cadastro e o repasse é calculado separado do financeiro padrão. A integração com a API do Wellhub para repasses automáticos está disponível para CTs credenciados.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="cta-section">
+  <div class="reveal">
+    <h2 class="cta-title"><span class="w">PRONTO PARA </span><span class="g">SIMPLIFICAR</span><br><span class="w">O SEU </span><span class="gr">CT?</span></h2>
+    <p class="cta-sub">Fale com a gente agora e veja o STM Pro funcionando para o seu CT em <em>menos de 24 horas.</em></p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;">
+      <button class="btn-primary" onclick="window.open('https://wa.me/5521981131135?text=Olá! Vi o STM Pro e quero saber mais.','_blank')" style="font-size:16px;padding:18px 42px;">💬 Falar no WhatsApp</button>
+    </div>
+    <p class="cta-note">Sem compromisso · Resposta em menos de 1 hora · Demonstração gratuita</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">STM<span>Pro</span></div>
+  <div class="footer-copy">© 2026 STM Pro · Gestão automática para beach sports 🏖️</div>
+</footer>
+
+<script>
+/* ── Scroll reveal ── */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* ── Timeline stagger reveal ── */
+const tlItems = document.querySelectorAll('.tl-item');
+const tlObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const idx = parseInt(e.target.id.split('-')[1]) || 0;
+      setTimeout(() => e.target.classList.add('tl-visible'), idx * 140);
+      tlObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.15});
+tlItems.forEach(el => tlObs.observe(el));
+
+/* ── Counter animation for dash ── */
+function animateCount(el, target, suffix, duration){
+  let start = 0; const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start = Math.min(start + step, target);
+    el.textContent = Math.round(start) + suffix;
+    if(start >= target) clearInterval(timer);
+  }, 16);
+}
+
+const dashObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      animateCount(document.getElementById('dash-geradas'), 47, ' atletas', 900);
+      dashObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.5});
+const dashEl = document.getElementById('dash-geradas');
+if(dashEl) dashObs.observe(document.getElementById('tl-2'));
+
+/* ── Split bars animate on scroll ── */
+const splitObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      setTimeout(()=>{document.getElementById('bar-ct').style.width='60%';},100);
+      setTimeout(()=>{document.getElementById('bar-prof').style.width='37%';},250);
+      setTimeout(()=>{document.getElementById('bar-stm').style.width='3%';},400);
+      splitObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.4});
+const barCt = document.getElementById('bar-ct');
+if(barCt) splitObs.observe(barCt.closest('.split-visual'));
+
+/* ── ROI calculator ── */
+function calcROI(val){
+  document.getElementById('roi-val').textContent = val;
+  const horas = Math.round((val * 2.5) / 60);
+  document.getElementById('roi-tempo').textContent = '~' + horas + ' horas';
+  const receita = (val * 150) * 0.064;
+  document.getElementById('roi-receita').textContent = receita.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+}
+calcROI(150);
+
+/* ── FAQ toggle ── */
+function toggleFaq(el){
+  const item = el.parentElement;
+  const wasActive = item.classList.contains('active');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+  if(!wasActive) item.classList.add('active');
+}
+</script>
+</body>
+</html>
