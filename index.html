@@ -143,7 +143,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 
 /* Flow CTA banner */
 .flow-banner{margin-top:56px;background:rgba(29,158,117,0.08);border:1px solid rgba(29,158,117,0.2);border-radius:16px;padding:26px 30px;text-align:left;display:flex;gap:18px;align-items:flex-start;}
-.flow-banner-icon{font-size:26px;flex-shrink:0;margin-top:2px;}
+.fin-panel{opacity:1;transform:none;}
+@keyframes finFade{from{opacity:0;filter:blur(6px);}to{opacity:1;filter:blur(0);}}
+.fin-val{opacity:0;filter:blur(6px);}
+.fin-val.fin-visible{animation:finFade 0.7s ease forwards;}
+
 .flow-banner-text{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.75;}
 .flow-banner-text strong{color:#fff;}
 .flow-banner-text em{color:var(--green);font-style:normal;}
@@ -269,6 +273,45 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
   .roi-results{grid-template-columns:1fr;}
   footer{flex-direction:column;text-align:center;}
   .tl-name{font-size:16px;}
+}
+@media(max-width:600px){
+  body{font-size:16px;}
+  .fin-grid{grid-template-columns:1fr !important;gap:32px !important;}
+  .fin-grid > div:last-child{overflow:hidden;border-radius:16px;}
+  .fin-grid > div:last-child > div{padding:20px !important;}
+  .fin-grid > div:last-child > div > div[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr 1fr !important;gap:8px !important;}
+  .fin-grid > div:last-child > div > div > div{padding:12px !important;}
+  .fin-grid > div:last-child > div > div > div > div:last-child{font-size:18px !important;}
+  .hero-sub{font-size:17px !important;}
+  .hero-eyebrow{font-size:13px;}
+  .section-subtitle{font-size:16px !important;}
+  .problem-title{font-size:17px;}
+  .problem-desc{font-size:15px;}
+  .flow-sub{font-size:17px;}
+  .tl-name{font-size:18px;}
+  .tl-desc{font-size:15px;}
+  .tl-tag{font-size:12px;}
+  .wa-bubble{font-size:14px;}
+  .wa-day{font-size:12px;}
+  .smart-cancel-text{font-size:14px;}
+  .mini-dash-row{font-size:14px;}
+  .flow-banner-text{font-size:15px;}
+  .module-name{font-size:19px;}
+  .module-desc{font-size:15px;}
+  .module-feature{font-size:15px;}
+  .stat-label{font-size:15px;}
+  .split-option-title{font-size:16px;}
+  .split-option-desc{font-size:14px;}
+  .faq-question{font-size:16px;}
+  .faq-answer{font-size:15px;}
+  .modules-sub{font-size:17px;}
+  .pay-pill{font-size:14px;}
+  .sport-pill{font-size:13px;}
+  .btn-primary,.btn-ghost{font-size:17px;padding:16px 28px;}
+  .nav-cta{font-size:14px;padding:9px 18px;}
+  .roi-container label{font-size:16px;}
+  .roi-card span{font-size:14px;}
+  .roi-card strong{font-size:22px;}
 }
 </style>
 </head>
@@ -451,7 +494,7 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
 
 <!-- FINANCEIRO -->
 <section class="stats-section" style="padding:100px 40px;background:#fff;">
-  <div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
+  <div class="fin-grid" style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;">
     <div class="reveal">
       <div class="section-label">Controle financeiro</div>
       <h2 class="section-title" style="font-size:clamp(38px,5vw,62px);">Abre o painel.<br><span class="accent">Vê tudo.</span></h2>
@@ -464,7 +507,7 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
         <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);"><span style="color:var(--green);font-weight:700;">✓</span> Gympass, Totalpass e Wellhub separados</div>
       </div>
     </div>
-    <div class="reveal">
+    <div class="fin-panel">
       <div style="background:var(--ocean);border-radius:22px;padding:30px;position:relative;overflow:hidden;">
         <div style="font-size:11px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:20px;display:flex;align-items:center;gap:8px;">
           <span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;"></span>
@@ -473,19 +516,19 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;">
           <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;">
             <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:8px;">Recebido este mês</div>
-            <div style="font-size:24px;font-weight:700;color:var(--green);" id="fin-recebido">R$ 0</div>
+            <div class="fin-val" style="font-size:24px;font-weight:700;color:var(--green);min-height:36px;line-height:1.2;" id="fin-recebido">R$ 12.400,00</div>
             <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:4px;">47 atletas pagos</div>
           </div>
           <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;">
             <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:8px;">Pendente</div>
-            <div style="font-size:24px;font-weight:700;color:var(--gold);" id="fin-pendente">R$ 0</div>
+            <div class="fin-val" style="font-size:24px;font-weight:700;color:var(--gold);min-height:36px;line-height:1.2;" id="fin-pendente">R$ 2.800,00</div>
             <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:4px;">8 em aberto</div>
           </div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
           <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;">
             <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:8px;">Repasse professor</div>
-            <div style="font-size:24px;font-weight:700;color:var(--blue);" id="fin-repasse">R$ 0</div>
+            <div class="fin-val" style="font-size:24px;font-weight:700;color:var(--blue);min-height:36px;line-height:1.2;" id="fin-repasse">R$ 4.588,00</div>
           </div>
           <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;">
             <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:8px;">Inadimplentes</div>
@@ -709,30 +752,7 @@ const dashObs = new IntersectionObserver(entries => {
 const dashEl = document.getElementById('dash-geradas');
 if(dashEl) dashObs.observe(document.getElementById('tl-2'));
 
-/* ── Finance counter animation ── */
-function animateFinance(id, target, duration){
-  const el = document.getElementById(id);
-  if(!el) return;
-  let start = 0;
-  const step = target / (duration / 16);
-  const timer = setInterval(() => {
-    start = Math.min(start + step, target);
-    el.textContent = 'R$ ' + Math.round(start).toLocaleString('pt-BR') + ',00';
-    if(start >= target) clearInterval(timer);
-  }, 16);
-}
-const finObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(e.isIntersecting){
-      animateFinance('fin-recebido', 12400, 1200);
-      animateFinance('fin-pendente', 2800, 1000);
-      animateFinance('fin-repasse', 4588, 1400);
-      finObs.unobserve(e.target);
-    }
-  });
-},{threshold:0.4});
-const finEl = document.getElementById('fin-recebido');
-if(finEl) finObs.observe(finEl.closest('section'));
+
 const splitObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting){
@@ -755,6 +775,22 @@ function calcROI(val){
   document.getElementById('roi-receita').textContent = receita.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 }
 calcROI(150);
+
+/* ── Finance panel fade observer ── */
+const finObs2 = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const vals = document.querySelectorAll('.fin-val');
+      vals.forEach((el, i) => {
+        setTimeout(() => el.classList.add('fin-visible'), i * 200);
+      });
+      finObs2.unobserve(e.target);
+    }
+  });
+},{threshold:0.3, rootMargin:'0px 0px -60px 0px'});
+const finPanel = document.querySelector('.fin-panel');
+if(finPanel) finObs2.observe(finPanel);
+
 
 /* ── FAQ toggle ── */
 function toggleFaq(el){
