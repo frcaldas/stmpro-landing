@@ -268,6 +268,7 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
   nav{padding:12px 20px;}
   .nav-links{display:none;}
   .hero,.problem-section,.flow-section,.modules-section,.split-section,.cta-section,.roi-section,.faq-section{padding:70px 20px;}
+  #alem{padding:70px 20px !important;}
   .split-inner{grid-template-columns:1fr;gap:40px;}
   .stats-inner{grid-template-columns:1fr;gap:24px;}
   .roi-results{grid-template-columns:1fr;}
@@ -276,6 +277,14 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
 }
 @media(max-width:600px){
   body{font-size:16px;}
+  #alem{padding:60px 16px !important;}
+  #alem h2{font-size:36px !important;}
+  #alem p{font-size:15px !important;}
+  #alem [style*="border-radius:24px"]{padding:22px !important;}
+  #alem [style*="font-size:20px"]{font-size:16px !important;}
+  #alem [style*="font-size:13px"]{font-size:14px !important;}
+  #alem [style*="font-size:11px"]{font-size:12px !important;}
+  #alem [style*="font-size:12px"]{font-size:13px !important;}
   .fin-grid{grid-template-columns:1fr !important;gap:32px !important;}
   .fin-grid > div:last-child{overflow:hidden;border-radius:16px;}
   .fin-grid > div:last-child > div{padding:20px !important;}
@@ -323,6 +332,7 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
   <div class="nav-links">
     <a onclick="document.getElementById('flow').scrollIntoView({behavior:'smooth'})">Como funciona</a>
     <a onclick="document.getElementById('modulos').scrollIntoView({behavior:'smooth'})">Módulos</a>
+    <a onclick="document.getElementById('alem').scrollIntoView({behavior:'smooth'})">Diferenciais</a>
     <a onclick="document.getElementById('roi').scrollIntoView({behavior:'smooth'})">Simulador</a>
     <a onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">FAQ</a>
   </div>
@@ -348,6 +358,8 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
     <div class="sport-pill">💬 WhatsApp inteligente</div>
     <div class="sport-pill">✅ Confirmação automática</div>
     <div class="sport-pill">📊 Financeiro em tempo real</div>
+    <div class="sport-pill">🎾 Agenda de quadras</div>
+    <div class="sport-pill">📣 Campanhas agendadas</div>
   </div>
   <div class="scroll-hint"><div class="scroll-line"></div>scroll</div>
 </section>
@@ -609,6 +621,86 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
     </div>
   </div>
 </section>
+
+<!-- ALÉM DA MENSALIDADE -->
+<section id="alem" style="background:var(--ocean);padding:100px 40px;overflow:hidden;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="reveal" style="text-align:center;margin-bottom:64px;">
+      <div class="section-label" style="color:var(--gold);">Muito além da mensalidade</div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,64px);line-height:1;color:#fff;margin-bottom:12px;">FERRAMENTAS QUE <span style="color:var(--gold);">NENHUM</span><br>CONCORRENTE TEM</h2>
+      <p style="font-size:16px;color:rgba(255,255,255,0.45);font-weight:300;max-width:520px;margin:0 auto;line-height:1.7;">Enquanto outros sistemas só gerenciam mensalidades, o STM Pro resolve tudo que acontece no seu CT.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;">
+
+      <!-- CARD 1: Lançamentos avulsos -->
+      <div class="reveal" style="background:rgba(255,255,255,0.03);border:1px solid rgba(245,166,35,0.2);border-radius:24px;padding:32px;position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 60px rgba(245,166,35,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);"></div>
+        <div style="width:48px;height:48px;border-radius:14px;background:rgba(245,166,35,0.1);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">🏆</div>
+        <div style="font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Lançamentos avulsos</div>
+        <div style="font-size:20px;font-weight:600;color:#fff;margin-bottom:10px;">Campeonatos, eventos e taxas com cobrança automática</div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;margin-bottom:22px;">Crie um lançamento, selecione os atletas e o STM Pro gera o link de pagamento e dispara o WhatsApp automaticamente — um por um, sem spam.</p>
+        <div style="background:rgba(37,211,102,0.06);border:1px solid rgba(37,211,102,0.15);border-radius:12px;padding:14px 16px;">
+          <div style="font-size:10px;font-weight:700;color:var(--wa);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">💬 Exemplo real</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.6;"><em style="color:rgba(255,255,255,0.85);">"Oi Ana! 🏆 Taxa de matrícula — Campeonato Copa Beach<br>💰 Valor: R$ 80,00<br>🔗 Pague aqui: [link Pix]"</em></div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;">
+          <div style="font-size:11px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);border-radius:20px;padding:4px 12px;color:var(--gold);">✓ Multi-atletas</div>
+          <div style="font-size:11px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);border-radius:20px;padding:4px 12px;color:var(--gold);">✓ Link de pagamento</div>
+          <div style="font-size:11px;background:rgba(245,166,35,0.1);border:1px solid rgba(245,166,35,0.2);border-radius:20px;padding:4px 12px;color:var(--gold);">✓ WhatsApp automático</div>
+        </div>
+      </div>
+
+      <!-- CARD 2: Agenda de quadras -->
+      <div class="reveal" style="background:rgba(255,255,255,0.03);border:1px solid rgba(29,158,117,0.2);border-radius:24px;padding:32px;position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 60px rgba(29,158,117,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--green);"></div>
+        <div style="width:48px;height:48px;border-radius:14px;background:rgba(29,158,117,0.1);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">🎾</div>
+        <div style="font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--green);margin-bottom:10px;">Agenda de quadras</div>
+        <div style="font-size:20px;font-weight:600;color:#fff;margin-bottom:10px;">Grade semanal com reservas e cobrança integrada</div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;margin-bottom:22px;">Bloqueie horários de turmas recorrentes, aceite reservas avulsas e gere a cobrança automaticamente — tudo em uma grade visual simples.</p>
+        <div style="background:rgba(29,158,117,0.06);border:1px solid rgba(29,158,117,0.15);border-radius:12px;padding:14px 16px;font-size:12px;">
+          <div style="font-size:10px;font-weight:700;color:var(--green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">📅 Grade semanal</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;">
+            <div style="background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.3);border-radius:6px;padding:6px;text-align:center;font-size:10px;color:var(--gold);">Seg 08h<br><span style="font-size:9px;opacity:0.7;">Turma A</span></div>
+            <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:6px;text-align:center;font-size:10px;color:rgba(255,255,255,0.5);">Seg 09h<br><span style="font-size:9px;color:var(--green);">Livre</span></div>
+            <div style="background:rgba(55,138,221,0.15);border:1px solid rgba(55,138,221,0.3);border-radius:6px;padding:6px;text-align:center;font-size:10px;color:var(--blue);">Seg 10h<br><span style="font-size:9px;opacity:0.7;">Reservado</span></div>
+            <div style="background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.3);border-radius:6px;padding:6px;text-align:center;font-size:10px;color:var(--gold);">Seg 11h<br><span style="font-size:9px;opacity:0.7;">Turma B</span></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;">
+          <div style="font-size:11px;background:rgba(29,158,117,0.1);border:1px solid rgba(29,158,117,0.2);border-radius:20px;padding:4px 12px;color:var(--green);">✓ Bloqueios recorrentes</div>
+          <div style="font-size:11px;background:rgba(29,158,117,0.1);border:1px solid rgba(29,158,117,0.2);border-radius:20px;padding:4px 12px;color:var(--green);">✓ Reserva com cobrança</div>
+          <div style="font-size:11px;background:rgba(29,158,117,0.1);border:1px solid rgba(29,158,117,0.2);border-radius:20px;padding:4px 12px;color:var(--green);">✓ WhatsApp na reserva</div>
+        </div>
+      </div>
+
+      <!-- CARD 3: Campanhas de comunicação -->
+      <div class="reveal" style="background:rgba(255,255,255,0.03);border:1px solid rgba(55,138,221,0.2);border-radius:24px;padding:32px;position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 60px rgba(55,138,221,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);"></div>
+        <div style="width:48px;height:48px;border-radius:14px;background:rgba(55,138,221,0.1);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">📣</div>
+        <div style="font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;">Campanhas agendadas</div>
+        <div style="font-size:20px;font-weight:600;color:#fff;margin-bottom:10px;">Sequência de mensagens automáticas com filtros inteligentes</div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;margin-bottom:22px;">Monte hoje uma campanha com múltiplos envios agendados. Filtre por quem pagou ou quem ainda está pendente — o sistema cuida do resto.</p>
+        <div style="background:rgba(55,138,221,0.06);border:1px solid rgba(55,138,221,0.15);border-radius:12px;padding:14px 16px;">
+          <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">📋 Exemplo: Copa Beach — 21/06</div>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.5);"><span style="background:rgba(245,166,35,0.2);color:var(--gold);border-radius:4px;padding:2px 6px;font-size:10px;white-space:nowrap;">Hoje 10h</span>Aviso da taxa → <span style="color:rgba(255,255,255,0.8);">Todos</span></div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.5);"><span style="background:rgba(245,166,35,0.2);color:var(--gold);border-radius:4px;padding:2px 6px;font-size:10px;white-space:nowrap;">Amanhã 10h</span>Lembrete → <span style="color:#f87171;">Só pendentes</span></div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.5);"><span style="background:rgba(29,158,117,0.2);color:var(--green);border-radius:4px;padding:2px 6px;font-size:10px;white-space:nowrap;">Sáb 09h</span>Último aviso → <span style="color:#f87171;">Só pendentes</span></div>
+            <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.5);"><span style="background:rgba(29,158,117,0.2);color:var(--green);border-radius:4px;padding:2px 6px;font-size:10px;white-space:nowrap;">Sáb 14h</span>Material e horários → <span style="color:rgba(255,255,255,0.8);">Todos</span></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;">
+          <div style="font-size:11px;background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.2);border-radius:20px;padding:4px 12px;color:var(--blue);">✓ Múltiplos envios</div>
+          <div style="font-size:11px;background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.2);border-radius:20px;padding:4px 12px;color:var(--blue);">✓ Filtro pagos/pendentes</div>
+          <div style="font-size:11px;background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.2);border-radius:20px;padding:4px 12px;color:var(--blue);">✓ Agendamento por hora</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
 <!-- STATS -->
 <section class="stats-section">
