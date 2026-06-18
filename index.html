@@ -360,6 +360,7 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
     <div class="sport-pill">📊 Financeiro em tempo real</div>
     <div class="sport-pill">🎾 Agenda de quadras</div>
     <div class="sport-pill">📣 Campanhas agendadas</div>
+    <div class="sport-pill">💸 Controle de despesas</div>
   </div>
   <div class="scroll-hint"><div class="scroll-line"></div>scroll</div>
 </section>
@@ -491,6 +492,8 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
             <div class="mini-dash-row"><span class="mini-dash-label">💰 Recebido no mês</span><span class="mini-dash-val" style="color:var(--green)">R$ 12.400,00</span></div>
             <div class="mini-dash-row"><span class="mini-dash-label">⚠️ Inadimplentes</span><span class="mini-dash-val" style="color:#f87171">3 atletas</span></div>
             <div class="mini-dash-row"><span class="mini-dash-label">👨‍🏫 Repasse professores</span><span class="mini-dash-val" style="color:var(--blue)">R$ 4.588,00</span></div>
+            <div class="mini-dash-row"><span class="mini-dash-label">💸 Despesas do mês</span><span class="mini-dash-val" style="color:#f87171">-R$ 3.200,00</span></div>
+            <div class="mini-dash-row" style="border-top:1px solid rgba(255,255,255,0.1);margin-top:4px;padding-top:8px;"><span class="mini-dash-label" style="font-weight:600;color:rgba(255,255,255,0.7);">✅ Resultado líquido</span><span class="mini-dash-val" style="color:var(--gold);font-size:14px;">R$ 5.200,00</span></div>
           </div>
         </div>
       </div>
@@ -694,6 +697,28 @@ footer{background:#060d1a;padding:28px 40px;display:flex;align-items:center;just
           <div style="font-size:11px;background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.2);border-radius:20px;padding:4px 12px;color:var(--blue);">✓ Múltiplos envios</div>
           <div style="font-size:11px;background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.2);border-radius:20px;padding:4px 12px;color:var(--blue);">✓ Filtro pagos/pendentes</div>
           <div style="font-size:11px;background:rgba(55,138,221,0.1);border:1px solid rgba(55,138,221,0.2);border-radius:20px;padding:4px 12px;color:var(--blue);">✓ Agendamento por hora</div>
+        </div>
+      </div>
+
+      <!-- CARD 4: Controle de despesas -->
+      <div class="reveal" style="background:rgba(255,255,255,0.03);border:1px solid rgba(248,113,113,0.2);border-radius:24px;padding:32px;position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 20px 60px rgba(248,113,113,0.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#f87171;"></div>
+        <div style="width:48px;height:48px;border-radius:14px;background:rgba(248,113,113,0.1);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px;">💸</div>
+        <div style="font-size:10px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#f87171;margin-bottom:10px;">Controle de despesas</div>
+        <div style="font-size:20px;font-weight:600;color:#fff;margin-bottom:10px;">Saiba exatamente quanto sobra no final do mês</div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.65;margin-bottom:22px;">Lance despesas avulsas ou recorrentes e veja o resultado líquido real do seu CT — receita menos custos, com visão por modalidade.</p>
+        <div style="background:rgba(248,113,113,0.06);border:1px solid rgba(248,113,113,0.15);border-radius:12px;padding:14px 16px;">
+          <div style="font-size:10px;font-weight:700;color:#f87171;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">📊 Resultado do mês</div>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;">
+            <div style="display:flex;justify-content:space-between;color:rgba(255,255,255,0.5);"><span>(+) Receita mensalidades</span><span style="color:var(--green);">R$ 12.400,00</span></div>
+            <div style="display:flex;justify-content:space-between;color:rgba(255,255,255,0.5);"><span>(-) Despesas do mês</span><span style="color:#f87171;">-R$ 3.200,00</span></div>
+            <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.08);padding-top:6px;margin-top:2px;"><span style="color:rgba(255,255,255,0.8);font-weight:600;">(=) Resultado líquido</span><span style="color:var(--gold);font-weight:700;">R$ 9.200,00</span></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;">
+          <div style="font-size:11px;background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.2);border-radius:20px;padding:4px 12px;color:#f87171;">✓ Avulsa e recorrente</div>
+          <div style="font-size:11px;background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.2);border-radius:20px;padding:4px 12px;color:#f87171;">✓ Por modalidade</div>
+          <div style="font-size:11px;background:rgba(248,113,113,0.1);border:1px solid rgba(248,113,113,0.2);border-radius:20px;padding:4px 12px;color:#f87171;">✓ Resultado líquido</div>
         </div>
       </div>
 
